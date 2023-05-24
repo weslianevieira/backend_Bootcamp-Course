@@ -1,0 +1,4 @@
+lavar quintal
+ler livro
+dar banho no cachorro
+molhar horta
