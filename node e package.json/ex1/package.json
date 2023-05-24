@@ -1,0 +1,11 @@
+{
+  "name": "ex1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Wesliane Vieira",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./index.js"
+  }
+}
