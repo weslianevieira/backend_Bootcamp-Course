@@ -1,0 +1,17 @@
+{
+  "name": "backend_bootcamp-course",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/weslianevieira/backend_Bootcamp-Course.git",
+  "author": "Wesliane Silva Vieira <weslianebsb2@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "typescript": "^5.0.4"
+  }
+}

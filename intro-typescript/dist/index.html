@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style.css">
+   <title>Typescript</title>
+</head>
+<body>
+   <h1>Teoria Typescript</h1>
+   <p>
+      //declarando variaveis
+const username: string = "Anne";
+let age: number = 26;
+var passwordIsCorrect: boolean = false;
+
+//declarando arr
+const arr: Array<number> = [1, 2, 3];
+const array: number[] = [1, 2, 3];
+
+//declarando obj
+const person: { name: string; age: number } = {
+  name: "Wesliane",
+  age: 26,
+};
+
+//any - var pode assumir qqr valor: string, number, boolean
+let aux: any;
+aux = "aux";
+aux = 0;
+aux = true;
+
+//parametros tipados
+function add(n1: number, n2: number): number {
+  return n1 + n2;
+}
+
+//void: function que nao retorna nada
+// parametros opcinais: declarados usando ?
+function sayHello(name?: string): void {
+  console.log("Hello,", name || "World");
+}
+
+//tipando methods usamos arrow finction(adaptada)
+type person = {
+  name: string;
+  age: number;
+  sayHello: (name?: string) => void;
+};
+
+//tipando callbacks
+function method(condition: boolean, callback: () => void): void {
+  if (condition) {
+    callback();
+  }
+}
+   </p>
+</body>
+</html>
