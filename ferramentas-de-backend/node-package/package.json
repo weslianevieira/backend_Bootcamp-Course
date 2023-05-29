@@ -1,5 +1,5 @@
 {
-  "name": "backend_bootcamp-course",
+  "name": "node-packagejson",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/weslianevieira/backend_Bootcamp-Course.git",
@@ -7,11 +7,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node ./index.js",
-    "test": "jest"
+    "start": "node ./index.js"
   },
   "dependencies": {
-    "colors": "^1.4.0",
-    "typescript": "^5.0.4"
+    "colors": "^1.4.0"
   }
 }

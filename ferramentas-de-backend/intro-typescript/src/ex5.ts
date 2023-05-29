@@ -22,7 +22,7 @@ function checaRenovacaoRG(anoAtual, anoNascimento, anoEmissao ) {
     
     }else {
         return "error"
-    }
+    }f
 }
 */
 
