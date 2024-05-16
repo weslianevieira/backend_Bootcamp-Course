@@ -68,24 +68,24 @@ app.get("/products/search", (req: Request, res: Response) => {
             // status HTTP 422 é definido como "Unprocessable Entity" (Entidade Não Processável)
             // formulário de cadastro é enviado e alguns campos obrigatórios não foram preenchidos 
             // ou o formato dos dados não está correto
-            res.statusCode = 422
+            res.statusCode = 400 // Bad Request
             throw new Error("Name are required")
         }
         //error: request com string númerica, vazia e com espaço
         if (!isNaN(Number(nameInput))) {
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("This field must contain only letters, without special characters or numbers.");
         }
 
         // error: request com string vazia ou com espaço
         // if (nameInput.trim().length === 0) {
-        //      res.statusCode = 422
+        //      res.statusCode = 422 // Unprocessable Entity
         //     throw new Error("Please enter at least one character.")
         // }
 
         //error: request vazio
         // if (!nameInput) {
-        //     res.statusCode = 422
+        //     res.statusCode = 422 // Unprocessable Entity
         //     throw new Error("Name are required")
         // }
 
@@ -126,12 +126,14 @@ app.post("/users", (req: Request, res: Response) => {
         // errror: user com mesmo id
         const existingUserById = users.find(u => u.id === id)
         if (existingUserById) {
+            res.statusCode = 409 // Conflict
             throw new Error("User with the same ID already exists.")
         }
 
         // errror: user com mesmo email
         const existingUserByEmail = users.find(u => u.id === email)
         if (existingUserByEmail) {
+            res.statusCode = 409 // Conflict
             throw new Error("User with the same email already exists.")
         }
 
@@ -139,44 +141,44 @@ app.post("/users", (req: Request, res: Response) => {
         if (typeof id !== "string") {
             // error: request com number ou indefinido
             // status HTTP 422 "Unprocessable Entity" (Entidade Não Processável)
-            res.statusCode = 422
-            throw new Error("This field can not be a number or undefined")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'ID' can not be a number or undefined")
         } else if (id.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("ID are required")
         }
 
         // NAME
         if (typeof name !== "string") {
             // error: request com number ou indefinido
-            res.statusCode = 422
-            throw new Error("This field can not be a number or undefined")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'name' can not be a number or undefined")
         } else if (name.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("Name are required")
         }
 
         // EMAIL
         if (typeof email !== "string") {
             // error: request com number ou indefinido
-            res.statusCode = 422
-            throw new Error("This field can not be a number.")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'email'can not be a number.")
         } else if (email.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("Email are required")
         }
 
         // PASSWORD
         if (typeof password !== "string") {
             // error: request com number ou indefinido
-            res.statusCode = 422
-            throw new Error("This field can not be a number.")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'password' can not be a number.")
         } else if (password.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("Password are required.")
         }
 
@@ -189,6 +191,7 @@ app.post("/users", (req: Request, res: Response) => {
 
         users.push(newUser)
 
+        // 201 - Created
         res.status(201).send("User successfully added!")
     } catch (error) {
         console.log(error)
@@ -220,62 +223,62 @@ app.post("/products", (req: Request, res: Response) => {
         // error: product com mesmo id
         const existingProductById = products.find(p => p.id === id)
         if (existingProductById) {
+            res.statusCode = 409 // Conflict
             throw new Error("Product with the same ID already exists.")
         }
 
         // ID
         if (typeof id !== "string") {
             // error: request com number ou indefinido
-            res.statusCode = 422
-            throw new Error("This field can not be a number or undefined")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'id' can not be a number or undefined")
         } else if (id.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("ID are required")
         }
 
         // NAME
         if (typeof name !== "string") {
             // error: request com number ou indefinido
-            res.statusCode = 422
-            throw new Error("This field can not be a number or undefined")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'name' can not be a number or undefined")
         } else if (name.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("Name are required")
         }
 
         // PRICE
         if (typeof price !== "number") {
             // error: request com string ou indefinido
-            res.statusCode = 422
-            throw new Error("This field can not be a string or undefined.")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'price' can not be a string or undefined.")
         } else if (price <= 0) {
             // error: request vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("Product price must be greater than zero")
         }
 
         // DESCRIPTION
         if (typeof description !== "string") {
             // error: request com number ou indefinido 
-            res.statusCode = 422
-            throw new Error("This field can not be a number or undefined.")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'description' can not be a number or undefined.")
         } else if (description.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("Description are required.")
         }
 
         //IMAGEURL
-
         if (typeof imageUrl !== "string") {
             // error: request com number ou indefinido
-            res.statusCode = 422
-            throw new Error("This field can not be a number or undefined.")
+            res.statusCode = 400 // Bad Request
+            throw new Error("'imageUrl' can not be a number or undefined.")
         } else if (imageUrl.trim().length === 0) {
             // error: request com string vazia ou com espaço
-            res.statusCode = 422
+            res.statusCode = 422 // Unprocessable Entity
             throw new Error("Image are required.")
         }
 
@@ -289,6 +292,7 @@ app.post("/products", (req: Request, res: Response) => {
 
         products.push(newProduct)
 
+        // 201 - Created
         res.status(201).send("Product successfully added!")
     } catch (error) {
         console.log(error)
@@ -315,6 +319,7 @@ app.delete("/users/:id", (req: Request, res: Response) => {
         // error: user com mesmo id não existe
         const existingUserById = users.find(u => u.id === idToDelete)
         if (!existingUserById) {
+            res.statusCode = 404 // Not Found
             throw new Error("User with this ID dosen't exists.")
         }
 
@@ -353,6 +358,7 @@ app.delete("/products/:id", (req: Request, res: Response) => {
          // error: product com mesmo id não existe
          const existingProductById = products.find(p => p.id === idToDelete)
          if (!existingProductById) {
+            res.statusCode = 404 // Not Found
              throw new Error("Product this same ID dosen't exists.")
          }
 
@@ -395,13 +401,13 @@ app.put("/products/:id", (req: Request, res: Response) => {
     const newImageUrl = req.body.imageUrl as string | undefined
 
     if (!newId && !newName && !newPrice && !newDescription && !newImageUrl) {
-        res.statusCode = 422
+        res.statusCode = 422 // Unprocessable Entity
         throw new Error("Product id, name, price, description and image are required")
     } else if (typeof newPrice !== "number" || typeof newId !== "string" || typeof newName !== "string" || typeof newDescription !== "string" || typeof newImageUrl !== "string") {
-        res.statusCode = 422
+        res.statusCode = 400 // Bad Request
         throw new Error("Product price must be a number. Product id, name, description and image must be a string")
     } else if (newPrice <= 0) {
-        res.statusCode = 422
+        res.statusCode = 422 // Unprocessable Entity
         throw new Error("Product price must be greater than zero")
     }
 
@@ -415,5 +421,5 @@ app.put("/products/:id", (req: Request, res: Response) => {
         productToEdit.imageUrl = newImageUrl || productToEdit.imageUrl
     }
 
-    res.status(200).send("Item editado com sucesso")
+    res.status(200).send("Item edited successfully.")
 })
