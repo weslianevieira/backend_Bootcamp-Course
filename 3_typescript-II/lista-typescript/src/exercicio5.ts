@@ -12,13 +12,13 @@ enum ROLE {
     ADMIN = 'admin'
 }
 
-type TUsers = {
+type TUser = {
     name: string,
     email: string,
     role: ROLE
 }
 
-const users =  [
+const users: TUser[] =  [
 	{name: "Rogério", email: "roger@email.com", role: ROLE.USER},
 	{name: "Ademir", email: "ademir@email.com", role: ROLE.ADMIN},
 	{name: "Aline", email: "aline@email.com", role: ROLE.USER},
@@ -27,7 +27,7 @@ const users =  [
 	{name: "Carina", email: "carina@email.com", role: ROLE.ADMIN}      
 ] 
 // retorne uma lista com apenas os emails dos usuários “admin”.
-const usersSelected = (users: TUsers[]): string[]  => {
+const usersSelected = (users: TUser[]): string[]  => {
     const result = users.filter(u => u.role=== ROLE.ADMIN).map(u => u.email)
 
     return result

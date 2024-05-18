@@ -20,9 +20,10 @@ const users = [
     { name: "Adilson", email: "adilson@email.com", role: ROLE.USER },
     { name: "Carina", email: "carina@email.com", role: ROLE.ADMIN }
 ];
-// :string[] retorne uma lista com apenas os emails dos usuários “admin”.
+// retorne uma lista com apenas os emails dos usuários “admin”.
 const usersSelected = (users) => {
     const result = users.filter(u => u.role === ROLE.ADMIN).map(u => u.email);
     return result;
 };
 console.log(usersSelected(users));
+// [ 'ademir@email.com', 'carina@email.com' ]
