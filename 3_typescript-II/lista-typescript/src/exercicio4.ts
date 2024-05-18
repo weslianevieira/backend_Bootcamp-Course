@@ -15,8 +15,15 @@ enum SECTOR {
     FINANCIAL = "financeiro"
 }
 
+type TEmployee = {
+    name: string,
+    salary: number,
+    sector: SECTOR,
+    inPerson: boolean
+}
+
 // Adaptação com ENUM
-const employees = [
+const employees: TEmployee[] = [
     { name: "Marcos", salary: 2500, sector: SECTOR.MARKETING, inPerson: true },
     { name: "Maria", salary: 1500, sector: SECTOR.SALES, inPerson: false },
     { name: "Salete", salary: 2200, sector: SECTOR.FINANCIAL, inPerson: true },
@@ -26,14 +33,7 @@ const employees = [
     { name: "Paola", salary: 3500, sector: SECTOR.MARKETING, inPerson: true }
 ]
 
-type TEmployees = {
-    name: string,
-    salary: number,
-    sector: SECTOR,
-    inPerson: boolean
-}
-
-function selectedEmployees(employees: TEmployees[]): TEmployees[] {
+function selectedEmployees(employees: TEmployee[]): TEmployee[] {
     const employeesFiltered = employees.filter(e => e.sector === SECTOR.MARKETING && e.inPerson)
 
     return employeesFiltered
