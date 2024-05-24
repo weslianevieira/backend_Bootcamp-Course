@@ -1,4 +1,4 @@
--- Active: 1715975494130@@127.0.0.1@3306
+-- Active: 1716560479479@@127.0.0.1@3306
 -- Conecte o arquivo pratica-aprofundamento-sql.db com a extensão MySQL e ative a conexão aqui
 
 -- Deletar tabela
@@ -44,8 +44,36 @@ VALUES
 SELECT * FROM pokemons;
 
 -- Práticas
+
+-- pokemons com speed maior que 60
 SELECT * FROM pokemons WHERE speed > 60;
 
+-- pokemons com attack e special_attack maiores ou iguais a 60
 SELECT * FROM pokemons WHERE attack >= 60 AND special_attack >= 60;
 
+-- pokemons que tenham na coluna name o termo 'saur' no final do texto
 SELECT * FROM pokemons WHERE name LIKE "%saur";
+
+-- Média simples da coluna hp
+SELECT AVG(hp) FROM pokemons;
+
+-- número de linhas da tabela pokemons, ou seja,
+-- quantas contas cadastradas o banco possui
+SELECT COUNT(*) FROM pokemons;
+
+-- refatorando queries acima apelidando as colunas para
+-- nomes mais semânticos em camelCase
+SELECT AVG(hp) AS mediaSimples FROM pokemons;
+SELECT COUNT(*) AS contasCadastradas FROM pokemons;
+
+-- busque todos os pokemons e ordene-os baseado na defense
+-- em ordem decrescente
+SELECT * FROM pokemons ORDER BY defense DESC;
+
+-- busque o número de pokemons cadastrados, 
+-- agrupe o resultado baseado na coluna type
+SELECT COUNT(*) FROM pokemons GROUP BY type;
+
+-- busque todos os pokemons, limite o resultado a 3 linhas 
+-- iniciando a partit da quinta linha 
+SELECT * FROM pokemons LIMIT 3 OFFSET 4;
